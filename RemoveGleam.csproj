@@ -8,9 +8,15 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
-  <PropertyGroup>
-    <InkboundInstallDir Condition=" '$(InkboundInstallDir)' == '' ">D:\Games\Steam\steamapps\common\Inkbound</InkboundInstallDir>
-  </PropertyGroup>
+	<PropertyGroup>
+		<InkboundInstallDir Condition=" '$(InkboundInstallDir)' == '' ">D:\Games\Steam\steamapps\common\Inkbound</InkboundInstallDir>
+	</PropertyGroup>
+	<PropertyGroup>
+		<PostBuildEvent>
+			echo "Copying build results to $(InkboundInstallDir)\BepInEx\plugins\$(AssemblyName)\"
+			xcopy /Y /E "$(TargetDir)*.*" "$(InkboundInstallDir)\BepInEx\plugins\$(AssemblyName)\"
+		</PostBuildEvent>
+	</PropertyGroup>
   <ItemGroup>
 	<Reference Include="Assembly-CSharp">
 	  <HintPath>$(InkboundInstallDir)\Inkbound_Data\Managed\Assembly-CSharp.dll</HintPath>
