@@ -16,6 +16,10 @@
 	  <HintPath>$(InkboundInstallDir)\Inkbound_Data\Managed\Assembly-CSharp.dll</HintPath>
 	  <Private>False</Private>
 	</Reference>
+	<Reference Include="InkboundModEnabler">
+	  <HintPath>$(InkboundInstallDir)\BepInEx\plugins\InkboundModEnabler\InkboundModEnabler.dll</HintPath>
+	  <Private>False</Private>
+	</Reference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />

@@ -2,23 +2,28 @@
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
+using InkboundModEnabler.Util;
 using ShinyShoe;
 using ShinyShoe.Ares;
 using ShinyShoe.SharedDataLoader;
 using System.Reflection;
 
 namespace RemoveGleam {
-    [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
+    [BepInPlugin(PLUGIN_GUID, PLUGIN_NAME, PLUGIN_VERSION)]
+    [CosmeticPlugin]
     public class RemoveGleam : BaseUnityPlugin {
+        public const string PLUGIN_GUID = "ADDB.RemoveGleam";
+        public const string PLUGIN_NAME = "Remove Gleam";
+        public const string PLUGIN_VERSION = "1.0.1";
         public ConfigEntry<bool> GleamIfDaily;
         public ConfigEntry<bool> DisableQuestGleam;
         public static ManualLogSource log;
         public static RemoveGleam instance;
-        public static Harmony HarmonyInstance => new Harmony(PluginInfo.PLUGIN_GUID);
+        public static Harmony HarmonyInstance => new Harmony(PLUGIN_GUID);
         private void Awake() {
             instance = this;
             log = Logger;
-            log.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
+            log.LogInfo($"Plugin {PLUGIN_GUID} is loaded!");
             DisableQuestGleam = Config.Bind("", "DisableQuestGleam", false, new ConfigDescription("Completely disable Gleam effects for the quest section and button."));
             GleamIfDaily = Config.Bind("", "GleamIfDaily", true, new ConfigDescription("Gleam if daily tasks are available"));
             HarmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
